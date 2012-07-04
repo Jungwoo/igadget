@@ -1,0 +1,77 @@
+<div class="page-header" style="padding-top:1.25em">
+		<h2>"<%= @campaign.title %>"</h2>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<div class="span4">
+			<div class="thumbnail">
+				<%= image_tag @campaign.image_url.to_s %>
+			</div>
+		</div>
+		<div class="span6">
+			<ul class="nav nav-tabs" id="myTab">
+				<li><a href="#description" data-toggle="tab">Description</a></li>
+				<% if @campaign.video != nil %>
+					<li><a href="#relatedvideo" data-toggle="tab">Related Video</a></li>
+				<% end %>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="description" style="height:300px">
+					<span><%= @campaign.description %></span>
+				</div>
+				<% if @campaign.video != nil %>
+					<div class="tab-pane" id="relatedvideo">
+						<embed src="<%= @campaign.video.to_s %>" type="application/x-shockwave-flash" width="440" height="275">
+						</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="span12" style="padding-left:1.4em;padding-top:1.4em;">
+		<span class="label label-important" style="font-size:1.0em">관련기술:</span><br/><br/>
+		&nbsp;
+		<% if @campaign.techs.count == 0 %>
+			입력된 관련기술이 없습니다. 
+		<% else %>
+			<% @campaign.tech_list.each do |tech|%>
+				<code><%= link_to tech, '/companies?search='+tech %></code>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="page-header">
+		&nbsp;
+	</div>
+	<div class="span12" style="padding-left:1.4em;">
+		<%= simple_form_for [@campaign, @campaign.comments.build], :html => { :class => 'well form-inline'} do |f| %>
+			<%= f.input :body, input_html: { :rows => 3, class: 'input-xxlarge' }, :label => "( 'o') Comment!!", :placeholder=>'댓글 내용을 입력해주세요.' %>
+			<%= f.button :submit, "작성완료"%>
+		<% end %>
+	</div>
+	<div class="span12" style="padding-left:1.4em;">
+		<span class="label label-success" style="font-size:1.0em">댓글목록 </span><br/><br/>
+		<% if @campaign.comments.count == 0 %>
+			작성된 댓글이 없습니다. 
+		<% else %>
+			<%= @campaign.comments.each do |comment| %>
+				<%= comment.body %>
+			<% end %>
+		<% end %>
+	</div>
+	
+</div>
+
+<script type='text/javascript'>
+	$('#myTab a').click(function(e) {
+		e.preventDefault();
+		$(this).tab('show');
+	})
+	
+	$('#myTab a:first').tab('show');
+</script>
+
+<div class="form-actions">
+  <%= link_to 'Back', campaigns_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_campaign_path(@campaign), :class => 'btn' %>
+  <%= link_to 'Delete', campaign_path(@campaign), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

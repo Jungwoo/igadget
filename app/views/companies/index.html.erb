@@ -1,0 +1,43 @@
+<div class="page-header">
+	<h2>
+	<% if params[:search] %>
+		<%= "'"+params[:search]+"' 기술 보유"%>
+	<% end %>
+	업체 목록</h2>
+</div>
+<div>
+	<form action="/companies" method="GET">
+		<input type="text" id="search" name="search" class="search-query span4" placeholder="<% if params[:search]%><%= @tech %><% else %><%= '보유기술로 검색하기 ' %><% end %>">
+		<button type="submit" class="btn btn-inverse" value="search">Search</button>
+	</form>
+</div>
+
+<div class="row">
+<% @companies.each do |company| %>
+
+	<div class="thumbnail span2">
+		<%= image_tag company.image_url.to_s, :style => "width:150px; height: 150px;"%>
+	</div>
+	<div class="span3">
+		<h3><%= link_to company.name, company.homepage %></h3>
+		<p style="color: #afafaf"><%= company.country %></p>
+		<p><i class="icon-envelope"></i>&nbsp;<%= company.contact_email_addr %></p>
+		<p><i class="icon-home"></i>&nbsp;<%= company.contact_phone_call %></p>
+		<span class="label label-important" style="font-size:0.9em">보유기술:</span>
+		<p style="line-height:3.0em;">
+		&nbsp;
+		<% if company.techs.count == 0 %>
+			입력된 보유기술이 없습니다. 
+		<% else %>
+			<% company.tech_list.each do |tech|%>
+				<code><%= link_to tech, '/companies?search='+tech %></code>
+			<% end %>
+		<% end %>
+		</p>
+	</div>
+	
+<% end %>
+</div>	
+
+
+<%= link_to '새로운 업체 등록하기', new_company_path, :class => 'btn btn-primary' %>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Igadget</title>
+  <!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" 
+	       type="text/javascript">
+
+  <![end if]-->
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+  	<div class="navbar-inner">
+  		<div class="container">
+  			<a class="btn btn-navbar" data-toggle="collapsed" data-target=".nav-collapse">
+			  	<span class="icon-bar"></span>
+			  	<span class="icon-bar"></span>
+			  	<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="http://localhost:3000">iGadget</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li><%= link_to "모든 캠페인 보기", campaigns_path %></li>
+						<li><%= link_to "모든 업체 보기", companies_path %></li>
+						<li><%= link_to "문의하기", campaigns_path %></li>
+					</ul>
+					<ul class="nav pull-right">
+          	<% if user_signed_in? %>
+            	<li><%= link_to current_user.name || 'No Name', edit_user_registration_path %></li>
+            	<li><%= link_to '로그아웃', destroy_user_session_path, :method => :delete %></li>
+          	<% else %>
+            	<li><%= link_to '로그인', new_user_session_path %></li>
+          	<% end %>
+        	</ul>
+				</div>
+ 			</div>
+ 		</div>
+	</div>
+  	
+  <div class="container">
+	<% flash.each do | name, msg | %>
+	  <div class="alert alert-<%= name == :notice ? "success" : "error"%>">
+		  <a class="close" data-dismiss="alert">x</a>
+		<%= msg %>
+    </div>
+	<% end %>
+	
+		<div class="row">
+	  	<div class="span12 span-maincontents">
+	    	<%= yield %>	
+	  	</div>
+		</div>
+  </div>
+</body>
+</html>

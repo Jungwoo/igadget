@@ -1,0 +1,21 @@
+<div class='page-header'>
+  <h2>업체 정보 수정</h2>
+</div>
+
+<%= simple_form_for @company, :html => { :class => 'form-horizontal'} do |f| %>
+<fieldset>
+
+	<%= f.input :name, input_html: { class: 'input-xlarge' }, hint: '업체명을 입력합니다.', :label => '업체명'  %>
+	<%= f.input :country, :priority => ["Korea, Republic of"], :label => '국가' %>
+	<%= f.input :image, as: :file, hint: '회사 로고 이미지입니다. 150X150 사이즈로 입력해주세요.', :label => "섬네일 이미지 설정"  %>
+	<%= f.input :tech_list, :label => "관련기술", hint: "업체가 보유한 기술입니다. ','로 구분해서 입력해주세요. (예: RFID, Smartphone, GPS)"%>
+	<%= f.input :homepage, :label => "홈페이지 주소"%>
+	<%= f.input :contact_email_addr, :label => "이메일 주소"%>
+	<%= f.input :contact_phone_call, :label => "전화 연락처 "%>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', campaigns_path, :class => 'btn' %>
+  </div>
+</fieldset>
+<% end %>

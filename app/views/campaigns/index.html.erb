@@ -1,0 +1,37 @@
+<section id="thumbnails">
+	<div class="page-header">
+			<h2>
+				<% if params[:search] %>
+					<%= "'"+params[:search]+"' 관련 "%>
+				<% end %>
+				 캠페인 목록</h2>
+	</div>
+	<div>
+		<form action="/campaigns" method="GET">
+			<input type="text" id="search" name="search" class="search-query span4" placeholder="캠페인명으로 검색하기 ">
+			<button type="submit" class="btn btn-inverse" value="search">Search</button>
+		</form>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<ul class="thumbnails">
+				<% @campaigns.each do |campaign| %>
+				<li class="span4">
+					<div class="thumbnail">
+						<%= image_tag campaign.image_url.to_s, style: "height: 180px;" %>
+						<div class="caption">
+							<h3><%= campaign.title %></h3><br/>
+							<p><%= truncate(campaign.description, :length => 125) %></p>
+						</div>
+						<div class="detail">
+							<p><%= link_to '상세보기', campaign_path(campaign), :class => 'btn btn-primary btn-success' %><p/>
+						</div>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<%= link_to '새로운 캠페인 등록하기', new_campaign_path, :class => 'btn btn-primary' %>

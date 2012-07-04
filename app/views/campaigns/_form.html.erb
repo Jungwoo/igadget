@@ -1,0 +1,20 @@
+<div class='page-header'>
+  <h2>캠페인 내용 수정</h2>
+</div>
+
+<%= simple_form_for @campaign, :html => { :class => 'form-horizontal'} do |f| %>
+<fieldset>
+	
+	<%= f.input :title, input_html: { class: 'input-xlarge' }, hint: '캠페인의 제목을 입력합니다.', :label => '캠페인명 '  %>
+	<%= f.input :description, as: :text, input_html: { :rows => 8,  class: 'input-xlarge'}, hint: '캠페인에 대한 자세한 설명을 입력합니다.', :label => '캠페인 상세 설명' %>
+	<%= f.input :tech_list, :label => "관련기술", hint: "캠페인에서 사용된 기술입니다. ','로 구분해서 입력해주세요. (예: RFID, Smartphone, GPS)"%>
+	<%= f.input :video, input_html: { class: 'input-xlarge' }, hint: '캠페인 관련 영상 (embed) URL입니다.', :label => '관련영상 URL' %>
+	<%= f.input :image, as: :file, hint: '캠페인 목록에 표시될 섬네일 이미지입니다. ', :label => "섬네일 이미지 설정"  %>
+	<%= f.input :remote_image_url, input_html: { class: 'input-xlarge' }, hint: '섬네일 이미지 URL을 입력합니다. 직접 업로드한 경우에는 입력하지 않습니다.', :label => '섬네일 이미지 URL' %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', campaigns_path, :class => 'btn' %>
+  </div>
+</fieldset>
+<% end %>

@@ -1,0 +1,15 @@
+<div class="page-header" style="padding-top:1.25em">
+		<h2>"<%= @company.name %>"</h2>
+</div>
+
+<div class="row">
+	<div class="span12">
+		
+	</div>
+</div>
+
+<div class="form-actions">
+  <%= link_to 'Back', companies_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_company_path(@company), :class => 'btn' %>
+  <%= link_to 'Delete', company_path(@company), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

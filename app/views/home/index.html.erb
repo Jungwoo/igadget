@@ -1,0 +1,54 @@
+<div id="themeCarousel" class="carousel">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item"  style="padding:5em;">
+      <div class='hero-unit' style='background:url(/assets/findout.png);'>
+        <h1 style="color: #ffffff">Find Out Now, <br/>Experience More</h1><br/>
+        <p style='color: #ffffff; padding-top:1.0em'>
+        	스마트폰을 활용한 일상적인 정보 탐색의 경험을 <br/>
+					보다 흥미롭고 재미있게 만드는 새로운 디지털 기술 </p>
+        </p><br/>
+        <%= link_to '관련 캠페인 보기', campaigns_path, class: 'btn btn-primary btn-large' %>
+      </div>
+    </div>
+    <div class="item" style="padding:5em;">
+      <div class='hero-unit' style='background:url(/assets/sensing.png)'>
+        <h1>See You, Listen to You, Understand You</h1></br>
+        <p style='color:#ffffff; padding-top:1.0em;text-align:right;'>
+					소비자들의 얼굴과 표정, 감정 등을 센싱(Sensing)하고 <br/>
+					이들과 더욱 감성적으로 교감하기 위해 활용되는 디지털 기술 
+        </p><br/>
+        <%= link_to '관련 캠페인 보기', campaigns_path, class: 'btn btn-primary btn-large' %>
+      </div>
+    </div>
+		<div class="item" style="padding:5em;">
+      <div class='hero-unit' style='background:url(/assets/location.png)'>
+        <h1 style="color: #ffffff">Location, Location, <br/>Location!</h1></br>
+        <p style='color: #ffffff; padding-top:1.0em'>
+					사람과 사물의 위치를 실시간으로 추적하여 장소 및 상황에 <br/>
+					알맞은 커뮤니케이션을 가능케하는 디지털 기술 
+        </p><br/>
+        <%= link_to '관련 캠페인 보기', campaigns_path, class: 'btn btn-primary btn-large' %>
+      </div>
+    </div>
+		<div class="item" style="padding:5em;">
+      <div class='hero-unit' style='background:url(/assets/different.png)'>
+        <h1 style="color: #ffffff">Turning it into <br/>Something Different</h1></br>
+        <p style='color:#ffffff; padding-top:1.0em'>
+        	사물의 원래 모습과 색상을 완전히 다른 형태로 달라져 보이도록 <br/>
+					하여 소비자들의 눈과 귀를 즐겁게 하는 디지털 영상 기술 
+        </p><br/>
+        <%= link_to '관련 캠페인 보기', campaigns_path, class: 'btn btn-primary btn-large' %>
+      </div>
+    </div>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#themeCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#themeCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
+<script>
+$('.carousel').carousel({
+  interval: 5000
+})
+</script>
